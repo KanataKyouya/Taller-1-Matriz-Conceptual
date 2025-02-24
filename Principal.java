@@ -5,6 +5,7 @@ public class Principal {
     static ObjLibro ObjL = new ObjLibro();
     static ObjTeatro ObjT = new ObjTeatro();
     static clsGenerales cg = new clsGenerales();
+    static ObjEstanteria cs = new ObjEstanteria();
 
     public static void main(String[] args) {
         
@@ -68,6 +69,40 @@ public class Principal {
 
                 break;
             
+            case 5: 
+
+                int fm = cg.leerEntero("Ingrese la cantidad de filas de la estanteria 1"), cm = cg.leerEntero("Ingrese la cantidad de columnas de la estanteria 1");
+                int fn = cg.leerEntero("Ingrese la cantidad de filas de la estanteria 2"), cn = cg.leerEntero("Ingrese la cantidad de columnas de la estanteria 2");
+                ObjEstanteria[][] Mm = new ObjEstanteria[fm][cm], Mn = new ObjEstanteria[fn][cn];
+
+                Mm = met.LlenarMatrizE(fm, cm);
+                Mn = met.LlenarMatrizE(fn, cn);
+
+                met.SumarStock(Mm, Mn);
+
+                if (Mm.length > Mn.length){
+
+                    Mm = met.SumarStock(Mm, Mn);
+                    met.MostrarMatrizE(Mm);
+
+                }
+
+                else if (Mn.length > Mm.length){
+
+                    Mn = met.SumarStock(Mm, Mn);
+                    met.MostrarMatrizE(Mn);
+
+                }
+
+                else {
+
+                    Mm = met.SumarStock(Mm, Mn);
+                    met.MostrarMatrizE(Mm);
+
+                }
+
+                break;
+
             case -1:
 
                 cg.Mensaje("Fin del programa");

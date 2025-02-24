@@ -233,4 +233,149 @@ public class Metodos {
 
     }
 
+    public ObjEstanteria[][] LlenarMatrizE(int f, int c){
+
+        ObjEstanteria[][] matriz = new ObjEstanteria[f][c];
+
+        for (int i = 0; i < matriz.length; i++){
+
+            for (int j = 0; j < matriz[i].length; j++){
+
+                ObjEstanteria obj = new ObjEstanteria();
+
+                obj.setNombre(cg.leerCadena2("Ingrese el nombre " + i + "-" + j + " :"));
+                obj.setPrecio(cg.leerEnteroPos("Ingrese el precio " + i + "-" + j + " :"));
+                obj.setStock(cg.leerEntero("Ingrese el stock: " + i + "-" + j + " :"));
+
+                matriz[i][j] = obj;
+            }
+
+        }
+
+        return matriz;
+
+    }
+
+    public void MostrarMatrizE(ObjEstanteria[][] matriz){
+
+        String txt = "Estanterias\n";
+
+        for (int i = 0; i < matriz.length; i++){
+
+            for (int j = 0; j < matriz[i].length; j++){
+
+                txt += "Persona [" + i + "][" + j + "]:\nNombre: " + matriz[i][j].getNombre() + "\nPrecio: " + matriz[i][j].getPrecio() + "\nStock: " + matriz[i][j].getStock() + "\n";
+
+            }
+
+        }
+
+        cg.Mensaje(txt);
+
+    }
+
+    public ObjEstanteria[][] SumarStock(ObjEstanteria[][] Mm, ObjEstanteria[][] Mn){
+
+        if(Mm.length > Mn.length){
+
+            for(int i = 0; i < Mm.length; i++) {
+
+                for(int j = 0; j < Mm[i].length; j++){
+
+                    for(int i2 = 0; i2 < Mn.length; i2++) {
+
+                        for(int j2 = 0; j2 < Mn[i2].length; j2++){
+        
+                            if(Mm[i][j].getNombre().equalsIgnoreCase(Mn[i2][j2].getNombre())){
+
+                                Mm[i][j].setStock(Mm[i][j].getStock() + Mn[i2][j2].getStock());
+
+                            }
+        
+                        }
+                    }
+
+                }
+
+            }
+
+            return Mm;
+
+        }
+
+        else {
+
+            for(int i = 0; i < Mn.length; i++) {
+
+                for(int j = 0; j < Mn[i].length; j++){
+
+                    for(int i2 = 0; i2 < Mm.length; i2++) {
+
+                        for(int j2 = 0; j2 < Mm[i2].length; j2++){
+        
+                            if(Mn[i][j].getNombre().equalsIgnoreCase(Mm[i2][j2].getNombre())){
+
+                                Mn[i][j].setStock(Mn[i][j].getStock() + Mm[i2][j2].getStock());
+
+                            }
+    
+                        }
+
+                    }
+
+                }
+
+            }
+
+            return Mn;
+
+        }
+
+    }
+
 }
+
+/*
+ * if(Mm.length > Mn.length){
+
+            ObjEstanteria[][] Mayor = new ObjEstanteria[Mm.length][Mm[0].length], Menor = new ObjEstanteri[Mn.length][Mn[0].length];
+            
+            Mayor = Mm;
+            Menor = Mn;
+
+        }
+
+        else{
+
+            ObjEstanteria[][] Mayor = new ObjEstanteria[Mn.length][Mn[0].length], Menor = new ObjEstanteria[Mm.length][Mm[0].length];
+            
+            Mayor = Mn;
+            Menor = Mm;
+
+        }
+
+        for(int i = 0; i < Mayor.length; i++) {
+
+            for(int j = 0; j < Mayor[i].length; j++){
+
+                for(int i2 = 0; i2 < Menor.length; i2++) {
+
+                    for(int j2 = 0; j2 < Menor[i2].length; j2++){
+    
+                        if(Mayor[i][j].getNombre().equalsIgnoreCase(Menor[i2][j2].getNombre())){
+
+                            Mayor[i][j].setStock(Mayor[i][j].getStock() + Menor[i2][j2].getStock());
+
+                        }
+    
+                    }
+                }
+
+            }
+
+        }
+
+        return Mayor;
+
+    }
+ */
